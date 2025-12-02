@@ -44,10 +44,11 @@ Run the script from your terminal:
 
 The script generates two main output files in the `data/` directory:
 
-1.  **`data/spin.txt`**: Raw non-dimensional data columns: `r_nd`, `z_nd`, `psi_nd`, `dPsi_nd/ds`, and `L_c`.
-2.  **`data/spin_profile.pdf`**: A PDF visualization of the calculated drop profile, showing the full 2D cross-section in millimeters (mm).
+1.  **`data/spin.txt`**: Raw non-dimensional data columns: `r`, `z`, `psi`, `dPsi/ds`, and `lambda`.
+2.  **`data/spin.pdf`**: A PDF visualization of the calculated drop profile, showing the full 2D cross-section in millimeters (mm).
 
 ## Example Output
 
 The figure below shows the calculated profile based on the default parameters (`\sigma = 72 \text{ mN/m}`, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$):
+
 ![Calculated Profile of the Spinning Drop](data/spin.svg)
