@@ -42,7 +42,7 @@ def plot_drop_profile(name, capillary_len):
   ax.set_xlim([0,.4])
   ax.set_aspect('equal', adjustable='box')
   print('savin ',name)
-  fig.savefig(name, bbox_inches='tight', transparent=True, format='pdf', dpi=600)
+  fig.savefig(name, bbox_inches='tight', transparent=True, format='svg')
   return
 
 #Parameters
@@ -57,4 +57,4 @@ rad_top = 5e-4 #m radius of curvature at the tip
 height = 9.5e-4 #m distance of the tip from the axis of rotation
 
 vol, height, centroid, *_ = spinning_drop_profile_solver(capillary_len, rad_top, height, fname=f'data/spin.txt')
-plot_drop_profile('data/spin.pdf', capillary_len)
+plot_drop_profile('data/spin.svg', capillary_len)

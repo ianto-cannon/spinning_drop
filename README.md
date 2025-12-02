@@ -35,12 +35,7 @@ $r$ is the radial oordinate (distance from the axis of rotation).
 
 ## How to Run
 
-1.  **Save the Code:** Ensure the provided Python script is saved as `spinning_drop.py` (or similar).
-2.  **Ensure Data Directory:** The script expects a `data` folder to exist in the same directory for saving the output data (`spin.txt`) and the plot (`spin_profile.pdf`).
-    ```
-    mkdir data
-    ```
-3.  **Execute:** Run the script from your terminal:
+Run the script from your terminal:
     ```
     python spinning_drop.py
     ```
@@ -55,3 +50,4 @@ The script generates two main output files in the `data/` directory:
 ## Example Output
 
 The figure below shows the calculated profile based on the default parameters (`\sigma = 72 \text{ mN/m}`, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$):
+![Calculated Profile of the Spinning Drop](data/spin_profile.svg)
