@@ -9,13 +9,23 @@ This Python script numerically integrates the profile of a liquid drop spinning 
 
 ## Physics and Non-Dimensionalization
 
-To simplify the governing equations, lengths are scaled by the **Rotational Capillary Length Scale ($L_c$)**:
+To simplify the governing equations, lengths are scaled by the **Rotational Capillary Length**:
 
-$$L_c = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
+$$\lambda = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
 
-The `spinning_drop_profile_solver` function solves the non-dimensional ODE system using the Euler method (implemented iteratively). The key ODE governing the change in angle $\psi$ is derived from the Young-Laplace equation:
+The `spinning_drop_profile_solver` function solves the non-dimensional ODE system using the Euler method (implemented iteratively). The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
 
 $$\frac{d\psi}{ds} = \frac{2}{R_{\text{top}}} + \frac{z^2}{2\lambda^3} - \frac{\sin(\psi)}{r}$$
+
+Where $s$ is the arc length along the drop interface, starting from the tip/neck. This is the integration coordinate.
+
+$\psi$ is the Interface Angle (or Angle of Inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
+
+$R_{\text{top}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
+
+$z$ is the axial coordinate (distance from the center of rotation along the axis).
+
+$r$ is the radial oordinate (distance from the axis of rotation).
 
 ## Requirements
 
