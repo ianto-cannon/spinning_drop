@@ -25,19 +25,20 @@ $$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 where $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
 
 Substituting into the Young-Laplace equation gives:
+
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 z^2.$$ 
 
 Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density difference, and divide through by the surface tension:
 
 $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $z = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{top}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $z = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
 
-$$\frac{2}{R_\text{top}} = \frac{q_\text{in} - q_\text{out}}{\sigma}.$$
+$$\frac{2}{R_\text{tip}} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z_\text{tip}^2}{2\sigma}.$$
 
 Subtracting this from the pressure-curvature relation gives:
 
-$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{top}} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
+$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{tip}} + \frac{\Delta\rho \omega^2 (z^2 -z_\text{tip}^2) }{2\sigma}.$$
 
 ### Geometric formulation in axisymmetric coordinates
 
@@ -49,11 +50,11 @@ $$R_2 = \frac{r}{\sin\psi}.$$
 
 Substituting into the pressure-curvature relation yields the governing equation for the drop shape:
 
-$$\frac{d\psi}{ds} + \frac{\sin\psi}{r} = \frac{2}{R_{\text{top}}} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.$$
+$$\frac{d\psi}{ds} + \frac{\sin\psi}{r} = \frac{2}{R_{\text{tip}}} + \frac{\Delta\rho \omega^2 (z^2 -z_\text{tip}^2)}{2\sigma}.$$
 
 Non-dimensionalizing lengths by the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho \omega^2} \right)^{1/3}$, this becomes:
 
-$$\frac{d\psi}{ds} = \frac{2}{R_{\text{top}}} + \frac{r^2}{2\lambda^3} - \frac{\sin(\psi)}{r}.$$
+$$\frac{d\psi}{ds} = \frac{2}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^3} - \frac{\sin(\psi)}{r}.$$
 
 This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation.
 
@@ -61,7 +62,7 @@ This equation governs the curvature of an axisymmetric interface under centrifug
 
 - $s$ is the arc length along the drop interface, starting from the tip. This is the integration coordinate.
 - $\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
-- $R_{\text{top}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
+- $R_{\text{tip}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
 - $z$ is the distance from the rotation axis.
 - $r$ is the distance from polar axis of of the drop.
 
