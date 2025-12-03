@@ -12,30 +12,82 @@ $$\lambda = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
 
 The `spinning_drop_profile_solver` function solves the non-dimensional ODE system using the Euler-step method. The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
 
-$$\frac{d\psi}{ds} = \frac{2}{R_{\text{top}}} + \frac{z^2}{2\lambda^3} - \frac{\sin(\psi)}{r}$$
+$$
+\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{out},
+$$
+where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively.
 
-Where $s$ is the arc length along the drop interface, starting from the tip. This is the integration coordinate.
+Assume both fluid phases are in rotational equilibrium. Then the pressures at radial distance $r$ from the rotation axis are given in terms of reference pressures $q_\text{in}$ and $q_\text{out}$ at the axis ($r = 0$):
+$$
+p_\text{in}(r) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 r^2,
+$$
+$$
+p_\text{out}(r) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 r^2,
+$$
+where $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
 
-$\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
+Substituting into the Young-Laplace equation gives:
+$$
+\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 r^2.
+$$ 
 
-$R_{\text{top}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
+Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density difference, and divide through by the surface tension:
+$$
+\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.
+$$
 
-$z$ is the axial coordinate (distance from the center of rotation along the axis).
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{top}$:
+$$
+\frac{2}{R_\text{top}} = \frac{q_\text{in} - q_\text{out}}{\sigma}.
+$$
 
-$r$ is the radial coordinate (distance from the axis of rotation).
+Subtracting this from the pressure-curvature relation gives:
+$$
+\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{top}} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.
+$$
+
+### Geometric formulation in axisymmetric coordinates
+
+Assuming the drop is axisymmetric about the rotation axis, we describe the interface shape in terms of arc length $s$ from the tip, radial coordinate $r(s)$, axial coordinate $z(s)$, and the angle $\psi(s)$ between the interface tangent and the axis of rotation. The two principal curvatures are:
+$$
+R_1 = \frac{ds}{d\psi},
+$$
+$$
+R_2 = \frac{r}{\sin\psi}.
+$$
+
+Substituting into the pressure-curvature relation yields the governing equation for the drop shape:
+$$
+\frac{d\psi}{ds} + \frac{\sin\psi}{r} = \frac{2}{R_{\text{top}}} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.
+$$
+
+Non-dimensionalizing lengths by the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho \omega^2} \right)^{1/3}$, this becomes:
+$$
+\frac{d\psi}{ds} = \frac{2}{R_{\text{top}}} + \frac{r^2}{2\lambda^3} - \frac{\sin(\psi)}{r}.
+$$
+
+This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation.
+
+### Variable definitions
+
+- $s$ is the arc length along the drop interface, starting from the tip. This is the integration coordinate.
+- $\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
+- $R_{\text{top}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
+- $z$ is the axial coordinate (distance along the rotation axis).
+- $r$ is the radial coordinate (distance from the axis of rotation).
 
 ## Requirements
 * Python 3.x
 * `numpy`
 * `matplotlib`
 
-## How to Run
+## How to run
 Run the script from your terminal:
 ```bash
 python spinning_drop.py
 ```
 
-### **Output files**
+### Output files
 The script generates two main output files in the `data/` directory:
 1.  **`data/spin.txt`**: Raw non-dimensional data columns: `r`, `z`, `psi`, `dPsi/ds`, and `lambda`.
 2.  **`data/spin.pdf`**: A PDF visualization of the calculated drop profile, showing the 2D cross-section in millimeters (mm).
