@@ -52,7 +52,7 @@ Substituting into the pressure-curvature relation yields the governing equation 
 
 $$\frac{d\psi}{ds} + \frac{\sin\psi}{r} = \frac{2}{R_{\text{tip}}} + \frac{\Delta\rho \omega^2 (z^2 -z_\text{tip}^2)}{2\sigma}.$$
 
-Non-dimensionalizing lengths by the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho \omega^2} \right)^{1/3}$, this becomes:
+Using the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho \omega^2} \right)^{1/3}$, this becomes:
 
 $$\frac{d\psi}{ds} = \frac{2}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^3} - \frac{\sin(\psi)}{r}.$$
 
