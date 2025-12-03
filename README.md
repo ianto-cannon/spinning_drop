@@ -16,31 +16,32 @@ $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{ou
 
 where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively.
 
-Assume both fluid phases are in rotational equilibrium. Then the pressures at radial distance $r$ from the rotation axis are given in terms of reference pressures $q_\text{in}$ and $q_\text{out}$ at the axis ($r = 0$):
-$$p_\text{in}(r) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 r^2,$$
+Assume both fluid phases are in rotational equilibrium. Then the pressures at distance $z$ from the rotation axis are given in terms of reference pressures $q_\text{in}$ and $q_\text{out}$ at the axis ($z = 0$):
 
-$$p_\text{out}(r) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 r^2,$$
+$$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
+
+$$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 
 where $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
 
 Substituting into the Young-Laplace equation gives:
-$$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 r^2.$$ 
+$$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 z^2.$$ 
 
 Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density difference, and divide through by the surface tension:
 
-$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.$$
+$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{top}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $z = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{top}$:
 
 $$\frac{2}{R_\text{top}} = \frac{q_\text{in} - q_\text{out}}{\sigma}.$$
 
 Subtracting this from the pressure-curvature relation gives:
 
-$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{top}} + \frac{\Delta\rho \omega^2 r^2}{2\sigma}.$$
+$$\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{top}} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
 ### Geometric formulation in axisymmetric coordinates
 
-Assuming the drop is axisymmetric about the rotation axis, we describe the interface shape in terms of arc length $s$ from the tip, radial coordinate $r(s)$, axial coordinate $z(s)$, and the angle $\psi(s)$ between the interface tangent and the axis of rotation. The two principal curvatures are:
+Assuming the drop is symmetric about the $z$ axis, which is perpendicular to the rotation axis, we describe the interface shape in terms of arc length $s$ from the tip, radial coordinate $r(s)$, axial coordinate $z(s)$, and the angle $\psi(s)$ between the interface tangent and the axis of rotation. The two principal curvatures are:
 
 $$R_1 = \frac{ds}{d\psi},$$
 
@@ -61,8 +62,8 @@ This equation governs the curvature of an axisymmetric interface under centrifug
 - $s$ is the arc length along the drop interface, starting from the tip. This is the integration coordinate.
 - $\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
 - $R_{\text{top}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find a closed, stable drop profile.
-- $z$ is the axial coordinate (distance along the rotation axis).
-- $r$ is the radial coordinate (distance from the axis of rotation).
+- $z$ is the distance from the rotation axis.
+- $r$ is the distance from polar axis of of the drop.
 
 ## Requirements
 * Python 3.x
