@@ -25,7 +25,7 @@ Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density differen
 
 $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0, z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0,\,z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
 
 $$\frac{2}{R_\text{tip}} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z_\text{tip}^2}{2\sigma}.$$
 
@@ -37,9 +37,7 @@ $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{2}{R_\text{tip}} + \frac{\Delta\rho \ome
 
 Assuming the drop is symmetric about the $z$ axis, which is perpendicular to the rotation axis, we describe the interface shape in terms of arc length $s$ from the tip, radial coordinate $r(s)$, axial coordinate $z(s)$, and the angle $\psi(s)$ between the interface tangent and the axis of rotation. The two principal curvatures are:
 
-$$R_1 = \frac{ds}{d\psi},$$
-
-$$R_2 = \frac{r}{\sin\psi}.$$
+$$R_1 = \frac{ds}{d\psi},\,R_2 = \frac{r}{\sin\psi}.$$
 
 Substituting into the pressure-curvature relation yields the governing equation for the drop shape:
 
@@ -53,7 +51,7 @@ To avoid floating point underflow when numerically integrating the equation, we 
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
 
-This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, $psi=0, r=0, z=z_\text{tip}$. 
+This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, $\psi=0,\,r=0,\,z=z_\text{tip}$. 
 
 ### Variable definitions
 
