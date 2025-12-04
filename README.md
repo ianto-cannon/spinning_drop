@@ -3,7 +3,7 @@ This Python script numerically integrates the profile of a liquid drop spinning 
 1.  **Capillary pressure:** due to surface tension ($\sigma$).
 2.  **Centrifugal pressure:** due to rotation ($\omega$).
 
-The form of the Young-Laplace equation follows the coordinate system described by Demirkır et al. (2024)[^1], but we substitutes centrifugal acceleration $\omega^2z$ for gravitational acceleration $g$.
+The form of the Young-Laplace equation follows the coordinate system described by Demirkır et al. (2024)[^1], but we substitute gravitational acceleration $g$ for centrifugal acceleration $\omega^2z$.
 
 ## Derivation of the ordinary differential equation for the profile shape 
 
