@@ -5,10 +5,7 @@ This Python script numerically integrates the profile of a liquid drop spinning 
 
 The form of the Young-Laplace equation used here substitutes centrifugal acceleration for gravitational acceleration, following the approach described by Demirkır et al. (2024)[^1].
 
-## Physics and non-dimensionalization
-To simplify the governing equations, lengths are scaled by the **rotational capillary length**:
-
-$$\lambda = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
+## Derivation of the ordinary differential equation for the profile shape 
 
 The `spinning_drop_profile_solver` function solves the non-dimensional ODE system using the Euler-step method. The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
 
@@ -57,6 +54,11 @@ Using the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho
 $$\frac{d\psi}{ds} = \frac{2}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^3} - \frac{\sin(\psi)}{r}.$$
 
 This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation.
+
+To avoid floating point underflow when numerically integrating the equation, we multiply by the **rotational capillary length**, so that each term is dimensionless:
+
+$$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
+$$ = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
 
 ### Variable definitions
 
