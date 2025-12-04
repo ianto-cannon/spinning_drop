@@ -25,7 +25,7 @@ Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density differen
 
 $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0,\,z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0,\quad z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
 
 $$\frac{2}{R_\text{tip}} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z_\text{tip}^2}{2\sigma}.$$
 
