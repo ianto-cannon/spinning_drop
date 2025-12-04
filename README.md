@@ -53,7 +53,7 @@ To avoid floating point underflow when numerically integrating the equation, we 
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
 
-This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation. 
+This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, $psi=0, r=0, z=z_\text{tip}$. 
 
 ### Variable definitions
 
