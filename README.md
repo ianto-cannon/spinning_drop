@@ -73,14 +73,14 @@ python spinning_drop.py
 ```
 
 ### Output files
-The script generates two main output files in the `data/` directory:
+The script generates two main output files:
 1.  **`data/spin.txt`**: Raw non-dimensional data columns: `r`, `z`, `psi`, `dPsi/ds`, and `lambda`.
-2.  **`data/spin.pdf`**: A PDF visualization of the calculated drop profile, showing the 2D cross-section in millimeters (mm).
+2.  **`spin.pdf`**: A PDF visualization of the calculated drop profile, showing the 2D cross-section in millimeters (mm).
 
 ## Example output
 The figure below shows the calculated profile based on the default parameters ($\sigma = 72 \text{ mN/m}$, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$):
 
-![Calculated Profile of the Spinning Drop](data/spin.svg)
+![Calculated Profile of the Spinning Drop](spin.svg)
 
 ## References
 [^1]: Demirkır, Ç., Wood, J. A., Lohse, D., & Krug, D. (2024). Life beyond Fritz: On the Detachment of Electrolytic Bubbles. *Langmuir*, 40(39), 20474–20484. [https://doi.org/10.1021/acs.langmuir.4c01963](https://doi.org/10.1021/acs.langmuir.4c01963)
