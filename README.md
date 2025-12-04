@@ -7,19 +7,19 @@ The form of the Young-Laplace equation used here substitutes centrifugal acceler
 
 ## Derivation of the ordinary differential equation for the profile shape 
 
-The `spinning_drop_profile_solver` function solves the non-dimensional ODE system using the Euler-step method. The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
+The `spinning_drop_profile_solver` function solves the ODE system using the Euler-step method. The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{out},$$
 
 where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively.
 
-Assume both fluid phases are in rotational equilibrium. Then the pressures at distance $z$ from the rotation axis are given in terms of reference pressures $q_\text{in}$ and $q_\text{out}$ at the axis ($z = 0$):
+Assume both fluid phases are in rotational equilibrium, with rotation rate $\omega$. Then the pressures at distance $z$ from the rotation axis must balances the centripetal acceleration $\omega^2 z$, plus the reference pressures $q_\text{in}$ and $q_\text{out}$ at the axis ($z = 0$):
 
 $$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
 
 $$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 
-where the pressure gradient balances the centripetal acceleration $\omega^2 z$. Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
+. Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
 
 Substituting into the Young-Laplace equation gives:
 
@@ -58,7 +58,6 @@ This equation governs the curvature of an axisymmetric interface under centrifug
 To avoid floating point underflow when numerically integrating the equation, we multiply by the **rotational capillary length**, so that each term is dimensionless:
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
-$$ = \left( \frac{\sigma}{\Delta\rho \cdot \omega^2} \right)^{1/3}$$
 
 ### Variable definitions
 
