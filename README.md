@@ -5,9 +5,9 @@ This Python script numerically integrates the profile of a liquid drop spinning 
 
 The form of the Young-Laplace equation follows the coordinate system described by Demirkır et al. (2024)[^1], but we substitute gravitational acceleration $g$ for centrifugal acceleration $\omega^2z$.
 
-## Derivation of the ordinary differential equation for the profile shape 
+## Derivation of the ordinary differential equation (ODE) for the profile shape 
 
-The `spinning_drop_profile_solver` solves the ODE system using the Euler-step method. The key ODE governing the change in interface angle $\psi$ to the horizontal is derived from the Young-Laplace equation:
+The `spinning_drop_profile_solver` solves an ODE using the Euler-step method. The key ODE governing the change in interface angle $\psi$ to the horizontal is derived from the Young-Laplace equation:
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{out},$$
 
@@ -51,13 +51,13 @@ To avoid floating point underflow when numerically integrating the equation, we 
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
 
-This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, where $\psi=0,$ $r=0,$ and $z=z_\text{tip}$. We wish to find the shape of a drop with its centre of mass on the rotation axis $z=0$, so we adjust $R_\text{tip} until we obtain a symmetrical profile.
+This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, where $\psi=0,$ $r=0,$ and $z=z_\text{tip}$. We wish to find the shape of a drop with its centre of mass on the rotation axis $z=0$, so we adjust $R_\text{tip}$ until we obtain a symmetrical profile.
 
 ### Variable definitions
 
 - $s$ is the arc length along the drop interface, starting from the tip. This is the integration coordinate.
 - $\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
-- $R_{\text{tip}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the critical *shooting parameter* that must be adjusted to find drop with its centre of mass on axis.
+- $R_{\text{tip}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the *shooting parameter* that must be adjusted to find a drop with its centre of mass on axis.
 - $z$ is the distance from the rotation axis.
 - $r$ is the distance from polar axis of of the drop.
 
