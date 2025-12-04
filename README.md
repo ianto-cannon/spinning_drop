@@ -1,9 +1,9 @@
-# Spinning drop profile simulation
+# Spinning drop profile calculator
 This Python script numerically integrates the profile of a liquid drop spinning rapidly around an axis while levitating. The equilibrium shape is governed by the **Young-Laplace equation**, which balances two forces:
 1.  **Capillary pressure:** due to surface tension ($\sigma$).
 2.  **Centrifugal pressure:** due to rotation ($\omega$).
 
-The form of the Young-Laplace equation used here substitutes centrifugal acceleration for gravitational acceleration, following the approach described by Demirkır et al. (2024)[^1].
+The form of the Young-Laplace equation follows the coordinate system described by Demirkır et al. (2024)[^1], but we substitutes centrifugal acceleration $\omega^2z$ for gravitational acceleration $g$.
 
 ## Derivation of the ordinary differential equation for the profile shape 
 
