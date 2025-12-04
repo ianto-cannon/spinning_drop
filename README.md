@@ -22,7 +22,7 @@ $$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
 
 $$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 
-where $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
+where the pressure gradient balances the centripetal acceleration $\omega^2 z$. Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, and $\omega$ is the angular velocity.
 
 Substituting into the Young-Laplace equation gives:
 
@@ -32,7 +32,7 @@ Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density differen
 
 $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $z = 0$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0, z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
 
 $$\frac{2}{R_\text{tip}} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z_\text{tip}^2}{2\sigma}.$$
 

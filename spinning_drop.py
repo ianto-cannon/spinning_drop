@@ -5,14 +5,14 @@ def spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=None):
   rad_tip/=capillary_len
   z_tip/=capillary_len
   capillary_len=1
-  ds = 1e-3
+  ds = 1e-5
   psi=0
   r=0
   z=z_tip
   Volume=0
   centroid=0
   if fname: adams_txt = open(fname, "w") 
-  for i in range(int(10/ds)):
+  for i in range(int(5/ds)):
     dr = ds * np.cos(psi)
     dz = ds * np.sin(psi)
     r += dr
@@ -22,7 +22,7 @@ def spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=None):
     Volume += np.pi*r**2*dz
     centroid += z*np.pi*r**2*dz
     if fname and not i%int(.01/ds):
-      print(r, z, psi, dPsi, capillary_len, file=adams_txt)
+      print(r, z, psi, dPsi, capillary_len, np.sin(psi)/r, file=adams_txt)
     if psi>np.pi:break
   if fname: print('saved',fname,'iterations',i)
   centroid /= Volume
