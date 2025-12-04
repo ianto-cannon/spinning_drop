@@ -51,7 +51,7 @@ To avoid floating point underflow when numerically integrating the equation, we 
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
 
-This equation governs the curvature of an axisymmetric interface under centrifugal forces, we solve it iteratively from the tip of the drop, where $\psi=0,$ $r=0,$ and $z=z_\text{tip}$. We wish to find the shape of a drop with its centre of mass on the rotation axis $z=0$, so we adjust $R_\text{tip}$ until we obtain a symmetrical profile.
+This equation governs the curvature of an axisymmetric interface under the influence of centrifugal forces. We solve it iteratively from the tip of the drop, where $\psi=0,$ $r=0,$ and $z=z_\text{tip}$. We wish to find the shape of a drop with its centre of mass on the rotation axis $z=0$, so we adjust $R_\text{tip}$ until we obtain a symmetrical profile.
 
 ### Variable definitions
 
@@ -59,7 +59,7 @@ This equation governs the curvature of an axisymmetric interface under centrifug
 - $\psi$ is the interface angle (or angle of inclination). This is the angle the tangent to the drop profile makes with the axis of rotation. It starts at $\psi=0$ at the tip and approaches $\psi=\pi$ at the far pole (if the drop closes).
 - $R_{\text{tip}}$ is the radius of curvature at the starting point (the tip of the drop). This value is the *shooting parameter* that must be adjusted to find a drop with its centre of mass on axis.
 - $z$ is the distance from the rotation axis.
-- $r$ is the distance from polar axis of of the drop.
+- $r$ is the distance from the polar axis of the drop.
 
 ## Requirements
 * Python 3.x
