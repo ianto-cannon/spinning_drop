@@ -7,21 +7,17 @@ The form of the Young-Laplace equation used here substitutes centrifugal acceler
 
 ## Derivation of the ordinary differential equation for the profile shape 
 
-The `spinning_drop_profile_solver` function solves the ODE system using the Euler-step method. The key ODE governing the change in interface angle to the horizontal $\psi$ is derived from the Young-Laplace equation:
+The `spinning_drop_profile_solver` solves the ODE system using the Euler-step method. The key ODE governing the change in interface angle $\psi$ to the horizontal is derived from the Young-Laplace equation:
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{out},$$
 
-where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively.
-
-Assume both fluid phases are in rotational equilibrium, with rotation rate $\omega$. Then the pressures at distance $z$ from the rotation axis must balances the centripetal acceleration $\omega^2 z$:
+where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively. Assume both fluid phases are in rotational equilibrium, with rotation rate $\omega$. Then the pressures gradient at distance $z$ from the rotation axis must balance the centripetal acceleration $\omega^2 z$:
 
 $$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
 
 $$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 
-Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, $q_\text{in}$ and $q_\text{out}$ pressures of the inner and outer fluid at the axis ($z = 0$).
-
-Substituting into the Young-Laplace equation gives:
+Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, $q_\text{in}$ and $q_\text{out}$ pressures of the inner and outer fluid at the axis ($z = 0$). Substituting into the Young-Laplace equation gives:
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 z^2.$$ 
 
@@ -53,11 +49,11 @@ Using the rotational capillary length $\lambda = \left( \frac{\sigma}{\Delta\rho
 
 $$\frac{d\psi}{ds} = \frac{2}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^3} - \frac{\sin(\psi)}{r}.$$
 
-This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation.
-
 To avoid floating point underflow when numerically integrating the equation, we multiply by the **rotational capillary length**, so that each term is dimensionless:
 
 $$\lambda\frac{d\psi}{ds} = \frac{2\lambda}{R_{\text{tip}}} + \frac{(z^2 -z_\text{tip}^2)}{2\lambda^2} - \frac{\lambda\sin(\psi)}{r}.$$
+
+This equation governs the curvature of an axisymmetric interface under centrifugal forces, balancing surface tension and centrifugal pressure variation. 
 
 ### Variable definitions
 
