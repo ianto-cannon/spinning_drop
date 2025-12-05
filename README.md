@@ -11,7 +11,7 @@ The `spinning_drop_profile_solver` solves an ODE using the Euler-step method. Th
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = p_\text{in} - p_\text{out},$$
 
-where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively. Assume both fluid phases are in rotational equilibrium, with rotation rate $\omega$. Then the pressures gradient at distance $z$ from the rotation axis must balance the centripetal acceleration $\omega^2 z$:
+where $\sigma$ is the surface tension, $R_1$ and $R_2$ are the principal radii of curvature at a point on the interface, and $p_\text{in}$, $p_\text{out}$ are the pressures inside and outside the drop, respectively. Assume both fluid phases are in rotational equilibrium, with rotation rate $\omega$. Then the pressure gradient $\frac{\partial p}{\partial z}$ at distance $z$ from the rotation axis must balance the centripetal force $\rho_\text{in}\omega^2 z$:
 
 $$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
 

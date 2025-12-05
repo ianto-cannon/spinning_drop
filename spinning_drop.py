@@ -48,21 +48,24 @@ def plot_drop_profile(folder, fname):
   #ax.set_xlim([0,.4])
   ax.set_aspect('equal', adjustable='box')
   print('savin ',fname+'.pdf')
+  plt.show()
   fig.savefig(fname+'.pdf', bbox_inches='tight', transparent=True, format='pdf')
   return
 
 #Parameters
 surf_tens = 72e-3 #N/m, surface tension
 density = 1e3 #kg*m**-3 density difference between the drop and the surrounding air
-rotation_speed = 2548 #rad/s rotation speed of the drop
-capillary_len = (surf_tens / density / rotation_speed**2 ) **(1/3)
-print('capillary_len',capillary_len,'m')
-
-#Lengthscales of the drop
-z_tip = 2*1.915e-4 #m distance of the tip from the axis of rotation
-rad_tip = z_tip/10 #m radius of curvature at the tip
-for r in range(10):
-  Volume, r, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=f'data/spin{r:05}.txt')
-  rad_tip += z/2
-print('rad_tip',rad_tip)
-plot_drop_profile('data/','spin')
+brown_txt = open('data/brown.txt', "w") 
+for rotation_speed in range(2500,2548,10): #rad/s rotation speed of the drop
+  capillary_len = ( surf_tens / density / rotation_speed**2 ) ** (1/3)
+  print('rotation_speed',rotation_speed,'capillary_len',capillary_len,'m')
+  z_tip = 2*1.915e-4 #m distance of the tip from the axis of rotation
+  rad_tip = z_tip/10 #m radius of curvature at the tip
+  for r in range(10):
+    Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip)
+    rad_tip += z/2
+  print('rad_tip',rad_tip)
+  Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=f'data/spin{r:05}.txt')
+  size = (2*3*Volume/4/np.pi)**(1/3) #m radius of drop if it were spherical
+  print( rotation_speed*(density*size**3/8/surf_tens)**.5, 2*z_tip/size, file=brown_txt)
+  plot_drop_profile('data/','spin')
