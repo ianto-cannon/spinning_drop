@@ -25,7 +25,7 @@ Let $\Delta\rho \equiv \rho_\text{out} - \rho_\text{in}$ be the density differen
 
 $$\frac{1}{R_1} + \frac{1}{R_2} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z^2}{2\sigma}.$$
 
-To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0,\quad z=z_\text{tip}$ and the interface is spherical, so $R_1 = R_2 = R_\text{tip}$:
+To eliminate the pressure difference $q_\text{in} - q_\text{out}$, evaluate this equation at the tip of the drop, where $r=0,\quad z=z_\text{tip}$ and the interface is locally spherical, so $R_1 = R_2 = R_\text{tip}$:
 
 $$\frac{2}{R_\text{tip}} = \frac{q_\text{in} - q_\text{out}}{\sigma} + \frac{\Delta\rho \omega^2 z_\text{tip}^2}{2\sigma}.$$
 
@@ -78,9 +78,9 @@ The script generates two main output files:
 2.  **`spin.pdf`**: A PDF visualization of the calculated drop profile, showing the 2D cross-section in millimeters (mm).
 
 ## Example output
-The figure below shows the calculated profile based on the default parameters ($\sigma = 72 \text{ mN/m}$, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$):
+The figure below shows the calculated profile based on the parameters $\sigma = 72 \text{ mN/m}$, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$:
 
-![Calculated Profile of the Spinning Drop](spin.svg)
+![Calculated Profile of the Spinning Drop](data/spin.svg)
 
 ## References
 [^1]: Demirkır, Ç., Wood, J. A., Lohse, D., & Krug, D. (2024). Life beyond Fritz: On the Detachment of Electrolytic Bubbles. *Langmuir*, 40(39), 20474–20484. [https://doi.org/10.1021/acs.langmuir.4c01963](https://doi.org/10.1021/acs.langmuir.4c01963)
