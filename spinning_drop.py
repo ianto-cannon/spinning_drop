@@ -5,7 +5,7 @@ def spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=None):
   #rad_tip/=capillary_len
   #z_tip/=capillary_len
   #capillary_len=1
-  ds = 1e-2*capillary_len
+  ds = 1e-4*z_tip
   psi=0
   r=0
   z=z_tip
@@ -21,7 +21,7 @@ def spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=None):
     psi += dPsi
     Volume += np.pi*r**2*dz
     centroid += z*np.pi*r**2*dz
-    if fname and not i%int(1e3):
+    if fname and not i%int(1e2):
       print(r, z, psi, dPsi, np.sin(psi)/r, file=adams_txt)
     #if psi>np.pi:break
     if dPsi<0 and psi<np.pi/2:break
@@ -39,7 +39,6 @@ def plot_drop_profile(folder, fname):
     with open(folder+file, encoding = 'utf-8') as f:
       df = np.loadtxt(f)
     if df.ndim<2: continue
-    print('plot'
     ax.plot(df[:,0], df[:,1], c='b')
   #ax.plot(df[-1,0]*1e3, df[-1,1]*1e3, '+', c='b')
   ax.tick_params(which='both', direction='in', top=True, right=True)
@@ -53,20 +52,20 @@ def plot_drop_profile(folder, fname):
   fig.savefig(fname+'.pdf', bbox_inches='tight', transparent=True, format='pdf')
   return
 
-surf_tens = 1#72e-3 #N/m, surface tension
-density = 1#e3 #kg*m**-3 density difference between the drop and the surrounding air
-brown_txt = open('data/brown.txt', "w") 
-for om in range(10):
-  rotation_speed = om+1 #rad/s rotation speed of the drop
-  capillary_len = ( surf_tens / density / rotation_speed**2 ) ** (1/3)
-  z_tip = 1#e-3 #m distance of the tip from the axis of rotation
-  rad_tip = z_tip/10 #m radius of curvature at the tip
-  for t in range(10):
-    Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip)
-    #plot_drop_profile('data/','spin')
-    rad_tip += z/4
-  print('rotation_speed',rotation_speed,'capillary_len',capillary_len,'rad_tip',rad_tip)
-  Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=f'data/spin{om:03}.txt')
-  size = (2*3*Volume/4/np.pi)**(1/3) #m radius of drop if it were spherical
-  print( rotation_speed*(density*size**3/8/surf_tens)**.5, 2*z_tip/size, file=brown_txt)
+surf_tens = 23.2e-3 #N/m, surface tension
+density = 801 #kg*m**-3 density difference between the drop and the surrounding air
+#brown_txt = open('data/brown.txt', "w") 
+#for om in range(10):
+rotation_speed = 13.7#om+1 #rad/s rotation speed of the drop
+capillary_len = ( surf_tens / density / rotation_speed**2 ) ** (1/3)
+z_tip = 1.32e-2 #m distance of the tip from the axis of rotation
+rad_tip = z_tip/10 #m radius of curvature at the tip
+for t in range(10):
+  Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=f'data/spin{t:03}.txt')
+  #plot_drop_profile('data/','spin')
+  rad_tip += z/4
+print('rotation_speed',rotation_speed,'capillary_len',capillary_len,'rad_tip',rad_tip)
+#Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, fname=f'data/spin{om:03}.txt')
+#size = (2*3*Volume/4/np.pi)**(1/3) #m radius of drop if it were spherical
+#print( rotation_speed*(density*size**3/8/surf_tens)**.5, 2*z_tip/size, file=brown_txt)
 plot_drop_profile('data/','spin')
