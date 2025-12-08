@@ -17,6 +17,8 @@ $$p_\text{in}(z) = q_\text{in} + \frac{1}{2}\rho_\text{in} \omega^2 z^2,$$
 
 $$p_\text{out}(z) = q_\text{out} + \frac{1}{2}\rho_\text{out} \omega^2 z^2,$$
 
+(EDIT: the centrifugal force acts radially outward from the rotation axis, violating the assumption of symmetry about the z-axis)
+
 Here $\rho_\text{in}$ and $\rho_\text{out}$ are the densities of the inner and outer fluids, $q_\text{in}$ and $q_\text{out}$ pressures of the inner and outer fluid at the axis ($z = 0$). Substituting into the Young-Laplace equation gives:
 
 $$\sigma \left( \frac{1}{R_1} + \frac{1}{R_2} \right) = q_\text{in} - q_\text{out} + \frac{1}{2}(\rho_\text{out} - \rho_\text{in}) \omega^2 z^2.$$ 
@@ -80,7 +82,7 @@ The script generates two main output files:
 ## Example output
 The figure below shows the calculated profile based on the parameters $\sigma = 72 \text{ mN/m}$, $\Delta\rho = 1000 \text{ kg/m}^3$, $\omega = 759 \text{ rad/s}$:
 
-![Calculated Profile of the Spinning Drop](data/spin.svg)
+![Calculated Profile of the Spinning Drop](spin.svg)
 
 ## References
 [^1]: Demirkır, Ç., Wood, J. A., Lohse, D., & Krug, D. (2024). Life beyond Fritz: On the Detachment of Electrolytic Bubbles. *Langmuir*, 40(39), 20474–20484. [https://doi.org/10.1021/acs.langmuir.4c01963](https://doi.org/10.1021/acs.langmuir.4c01963)
