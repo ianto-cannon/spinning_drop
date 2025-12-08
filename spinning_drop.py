@@ -32,17 +32,20 @@ def spinning_drop_profile_solver(capillary_len, rad_tip, z_tip, lobes, fname=Non
   centroid /= Volume
   return Volume, r, z, centroid, psi
 
-def plot_drop_profile(folder, fname): 
+def plot_drop_profile(folder, fname, col): 
   import matplotlib.pyplot as plt
   import os
   fig, ax = plt.subplots(1)
+  i=0
   for file in sorted(os.listdir(folder)):
     if 'txt' not in file: continue
     if fname not in file: continue
     with open(folder+file, encoding = 'utf-8') as f:
       df = np.loadtxt(f)
     if df.ndim<2: continue
-    ax.plot(df[:,0], df[:,1], c='b')
+    if not i%4: ax.plot(df[:,0], df[:,1], c=col)
+    i+=1
+  ax.plot(df[:,0], df[:,1], c=col)
   ax.tick_params(which='both', direction='in', top=True, right=True)
   ax.set_xlabel('r [m]')
   ax.set_ylabel('z [m]')
@@ -56,12 +59,12 @@ surf_tens = 23.2e-3 #N/m, surface tension
 density = 801 #kg*m**-3, density difference between the drop and the surrounding air
 z_tip = 1.18e-2 #m, distance of the tip from the axis of rotation
 
-brown_txt = open('data/brown.txt', 'a') 
-for lobes in range(1,5): # 1,2,3,4..., dimensionless, number of bulges in z
-  for r in range(10):
-    rotation_speed = .5 + .5*r #rad/s, rotation speed of the drop
-    #rotation_speed = 20 + 2*r #rad/s, rotation speed of the drop
-    #rotation_speed = 11.5 + .05*r #rad/s, rotation speed of the drop
+for lobes in range(1,3): # 1,2,3,4..., dimensionless, number of bulges in z
+  brown_txt = open(f'data/brownLobes{lobes:01}.txt', 'a') 
+  for r in range(1,100):
+    rotation_speed = .1 + .2*r #rad/s, rotation speed of the drop
+    #rotation_speed = r+.48 #rad/s, rotation speed of the drop
+    
     #Use bisection to find rad_tip that centres the drop at z=0
     capillary_len = ( surf_tens / density / rotation_speed**2 ) ** (1/3)
     rad_min = z_tip/10
@@ -73,9 +76,29 @@ for lobes in range(1,5): # 1,2,3,4..., dimensionless, number of bulges in z
       elif psi > np.pi: rad_max = rad_tip
       elif z > 0: rad_min = rad_tip
       else: rad_max = rad_tip
-    if z**2 > (.01*z_tip)**2: continue
-    Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_min, z_tip, lobes, fname=f'data/spinNodes{lobes:01}R{r:02}.txt')
+    if z**2 > (.01*z_tip)**2: 
+      print('unable to find stable drop for rotation_speed', rotation_speed)
+      continue
+    Volume, rad_neck, z, centroid, psi = spinning_drop_profile_solver(capillary_len, rad_min, z_tip, lobes, fname=f'data/spinLobes{lobes:01}R{r:02}.txt')
     size = (3*Volume/4/np.pi)**(1/3) #m radius of drop if it were spherical
     print( rotation_speed*(density*size**3/8/surf_tens)**.5, z_tip/size, file=brown_txt)
     print( r, rotation_speed*(density*size**3/8/surf_tens)**.5, z_tip/size)
-  plot_drop_profile('data/',f'spinNodes{lobes:01}')
+  #plot_drop_profile('data/',f'spinLobes{lobes:01}')
+  
+plot_drop_profile('data/',f'spinLobes1','b')
+plot_drop_profile('data/',f'spinLobes2','r')
+import matplotlib.pyplot as plt
+import os
+fig, ax = plt.subplots(1)
+with open('data/brownLobes1.txt', encoding = 'utf-8') as f:
+  df = np.loadtxt(f)
+  print('df1',df)
+ax.plot(df[:,0], df[:,1], '.', c='b')
+with open('data/brownLobes2.txt', encoding = 'utf-8') as f:
+  df = np.loadtxt(f)
+  print('df2',df)
+ax.plot(df[:,0], df[:,1], '.', c='r')
+ax.tick_params(which='both', direction='in', top=True, right=True)
+ax.set_xlabel('$R*$')
+ax.set_ylabel('$\\Omega*$')
+fig.savefig('brown.pdf', bbox_inches='tight', transparent=True, format='pdf')
